@@ -15,11 +15,12 @@ X = data.iloc[:, 0:-1]
 y = data.iloc[:, -1]
 
 # Xử lý dữ liệu nhiễu hoặc thiếu => thay thế các giá trị đó bằng giá trị trung bình của cột chứa nó
-attrs = X.columns.values
-for column in attrs:
-    X[column] = X[column].replace(0, np.NaN)
-    mean = X[column].mean()
-    X[column] = X[column].replace(np.NaN, mean)
+# ==> Sử dụng khi cần thiết => đối với dataset này thì không cần
+# attrs = X.columns.values
+# for column in attrs:
+#     X[column] = X[column].replace(0, np.NaN)
+#     mean = X[column].mean()
+#     X[column] = X[column].replace(np.NaN, mean)
 
 # Chia ra các tập để train và test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
@@ -44,6 +45,8 @@ y_predicted = knn_classifier.predict(X_test)
 cm = confusion_matrix(y_test, y_predicted)
 
 print(cm)
+print(knn_classifier.score(X_test, y_test))
+
 
 
 
