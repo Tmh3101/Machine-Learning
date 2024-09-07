@@ -5,7 +5,7 @@ import math
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, accuracy_score
 
 # Load data từ file csv
 data = pd.read_csv('iris_data.csv')
@@ -43,9 +43,10 @@ y_predicted = knn_classifier.predict(X_test)
 
 # Cho ra kết quả - confusion matrix
 cm = confusion_matrix(y_test, y_predicted)
+score = accuracy_score(y_test, y_predicted)
 
 print(cm)
-print(knn_classifier.score(X_test, y_test))
+print(score)
 
 
 
